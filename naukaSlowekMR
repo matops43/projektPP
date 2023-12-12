@@ -1,0 +1,118 @@
+using Random
+
+function addWord(words, word, translation)
+      return [words...,(word, translation)]
+end
+   
+function resultToString(words,input)
+   if (checkIfCorrect(words[2], input))
+      return "Prawidłowo"
+   else
+      return "Nieprawidłowo"
+   end
+end
+
+function checkIfCorrect(word,translation)
+   if word == translation
+      return true
+   else
+      return false
+   end
+end
+
+function correctUpdate(string)
+   if string == "Nieprawidłowo"
+      return 0
+   else
+      return 1
+   end
+end
+
+function arraySize(array)
+   if isempty(array)
+      return 0
+   else
+      return 1 + arraySize(array[2:end])
+   end
+end
+   
+   
+# Inicjalizacja słów
+
+words = []
+words = addWord(words, "koń", "horse")
+words = addWord(words, "kot", "cat")
+words = addWord(words, "pies", "dog")
+
+println("--------------------------")
+println("Tryb nauki")
+println("--------------------------")
+
+# Tryb nauki
+
+correctPoints = 0
+
+currentWord = words[1][1]
+println("Aktualne słowo: $currentWord")
+println("Wpisz tłumaczenie: ")
+userAnswer = "horse"
+correctness = resultToString(words[1], userAnswer)
+println("Poprawność: $correctness")
+correctPoints += correctUpdate(correctness)
+println("--------------------------")
+
+currentWord = words[2][1]
+println("Aktualne słowo: $currentWord")
+println("Wpisz tłumaczenie: ")
+userAnswer = "frog"
+correctness = resultToString(words[2], userAnswer)
+println("Poprawność: $correctness")
+correctPoints += correctUpdate(correctness)
+println("--------------------------")
+
+currentWord = words[3][1]
+println("Aktualne słowo: $currentWord")
+println("Wpisz tłumaczenie: ")
+userAnswer = "dog"
+correctness = resultToString(words[3], userAnswer)
+println("Poprawność: $correctness")
+correctPoints += correctUpdate(correctness)
+println("--------------------------")
+
+println("Koniec nauki")
+println("Ilość poprawnych: $correctPoints")
+println("--------------------------")
+
+# Tryb Egzaminu
+
+correctPoints = 0
+wordsCount = arraySize(words)
+numberOfQuestions = wordsCount - 1
+currentQuestion = 1
+
+println("Egzamin")
+println("--------------------------")
+
+nextWord = rand(1:wordsCount)
+println("Pytanie $currentQuestion/$numberOfQuestions")
+currentWord = words[nextWord][1]
+println("Słowo: $currentWord")
+println("Wpisz tłumaczenie: ")
+userAnswer = "horse"
+correctness = resultToString(words[nextWord], userAnswer)
+correctPoints += correctUpdate(correctness)
+println("--------------------------")
+currentQuestion += 1
+
+nextWord = rand(1:wordsCount)
+println("Pytanie $currentQuestion/$numberOfQuestions")
+currentWord = words[nextWord][1]
+println("Słowo: $currentWord")
+println("Wpisz tłumaczenie: ")
+userAnswer = "dog"
+correctness = resultToString(words[nextWord], userAnswer)
+correctPoints += correctUpdate(correctness)
+println("--------------------------")
+
+println("Koniec egzaminu")
+println("Twój wynik: $correctPoints/$numberOfQuestions")
