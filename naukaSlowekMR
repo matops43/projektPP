@@ -52,35 +52,26 @@ println("--------------------------")
 
 correctPoints = 0
 
-currentWord = words[1][1]
-println("Aktualne słowo: $currentWord")
-println("Wpisz tłumaczenie: ")
-userAnswer = "horse"
-correctness = resultToString(words[1], userAnswer)
-println("Poprawność: $correctness")
-correctPoints += correctUpdate(correctness)
+println("Aktualne słowo: $(words[1][1])")
+println("Wpisz tłumaczenie: horse")
+println("Poprawność: $(resultToString(words[1], "horse"))")
+correctPoints += correctUpdate(resultToString(words[1], "horse"))
 println("--------------------------")
 
-currentWord = words[2][1]
-println("Aktualne słowo: $currentWord")
-println("Wpisz tłumaczenie: ")
-userAnswer = "frog"
-correctness = resultToString(words[2], userAnswer)
-println("Poprawność: $correctness")
-correctPoints += correctUpdate(correctness)
+println("Aktualne słowo: $(words[2][1])")
+println("Wpisz tłumaczenie: frog")
+println("Poprawność: $(resultToString(words[2], "frog"))")
+correctPoints += correctUpdate(resultToString(words[2], "frog"))
 println("--------------------------")
 
-currentWord = words[3][1]
-println("Aktualne słowo: $currentWord")
-println("Wpisz tłumaczenie: ")
-userAnswer = "dog"
-correctness = resultToString(words[3], userAnswer)
-println("Poprawność: $correctness")
-correctPoints += correctUpdate(correctness)
+println("Aktualne słowo: $(words[3][1])")
+println("Wpisz tłumaczenie: dog")
+println("Poprawność: $(resultToString(words[3], "dog"))")
+correctPoints += correctUpdate(resultToString(words[3], "dog"))
 println("--------------------------")
 
 println("Koniec nauki")
-println("Ilość poprawnych: $correctPoints")
+println("Ilość poprawnych: $(correctPoints)")
 println("--------------------------")
 
 # Tryb Egzaminu
@@ -94,25 +85,23 @@ println("Egzamin")
 println("--------------------------")
 
 nextWord = rand(1:wordsCount)
-println("Pytanie $currentQuestion/$numberOfQuestions")
+println("Pytanie $(currentQuestion)/$(numberOfQuestions)")
 currentWord = words[nextWord][1]
-println("Słowo: $currentWord")
-println("Wpisz tłumaczenie: ")
-userAnswer = "horse"
-correctness = resultToString(words[nextWord], userAnswer)
+println("Słowo: $(currentWord)")
+println("Wpisz tłumaczenie: horse")
+correctness = resultToString(words[nextWord], "horse")
 correctPoints += correctUpdate(correctness)
 println("--------------------------")
 currentQuestion += 1
 
 nextWord = rand(1:wordsCount)
-println("Pytanie $currentQuestion/$numberOfQuestions")
+println("Pytanie $(currentQuestion)/$(numberOfQuestions)")
 currentWord = words[nextWord][1]
-println("Słowo: $currentWord")
-println("Wpisz tłumaczenie: ")
-userAnswer = "dog"
-correctness = resultToString(words[nextWord], userAnswer)
+println("Słowo: $(currentWord)")
+println("Wpisz tłumaczenie: dog")
+correctness = resultToString(words[nextWord], "dog")
 correctPoints += correctUpdate(correctness)
 println("--------------------------")
 
 println("Koniec egzaminu")
-println("Twój wynik: $correctPoints/$numberOfQuestions")
+println("Twój wynik: $(correctPoints)/$(numberOfQuestions)")
